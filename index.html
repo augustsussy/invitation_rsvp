@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Julie & Arvin — Wedding</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/rsvp.css">
 
@@ -69,12 +69,13 @@
       <p class="hero-date">Sunday, 29th of December, 2023</p>
       <p class="hero-venue">San Agustin Church · Cavite</p>
 
-      <a class="hero-cta" href="#rsvp">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        View Invitation
-      </a>
+      
+<button class="hero-cta" id="heroCta" type="button" aria-label="View invitation section" onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  View Invitation
+</button>
     </div>
   </section>
 
@@ -114,6 +115,19 @@
         />
       </div>
 
+      <!-- Invite Code -->
+      <div class="rsvp-field">
+        <label class="rsvp-label" for="inviteCode">Invite Code</label>
+        <input
+          class="rsvp-input"
+          type="text"
+          id="inviteCode"
+          placeholder="Enter your invite code..."
+          autocomplete="off"
+        />
+        <p class="rsvp-helper">Your code is provided by the couple.</p>
+      </div>
+
       <!-- Attendance -->
       <div class="rsvp-field">
         <label class="rsvp-label">Attendance</label>
@@ -128,7 +142,7 @@
       </div>
 
       <!-- Seat Selector -->
-      <div class="rsvp-field" id="seatField">
+      <div class="rsvp-field accept-only-field" id="seatField">
         <label class="rsvp-label">Select Your Seat</label>
         <div class="rsvp-select-wrap">
           <select class="rsvp-select" id="seatSelect">
@@ -193,6 +207,53 @@
         </div>
       </div>
 
+      <!-- Plus One -->
+      <div class="rsvp-field accept-only-field" id="plusOneField">
+        <label class="rsvp-label" for="plusOneCount">Additional Guests (Plus One)</label>
+        <div class="rsvp-select-wrap">
+          <select class="rsvp-select" id="plusOneCount" disabled>
+            <option value="0" selected>No plus one</option>
+          </select>
+          <span class="rsvp-select-arrow">▾</span>
+        </div>
+        <p class="rsvp-helper" id="plusOneHelper">Enter a valid invite code to see plus-one allowance.</p>
+      </div>
+
+      <!-- Dining Preference -->
+      <div class="rsvp-field accept-only-field" id="mealField">
+        <label class="rsvp-label" for="mealSelect">Meal Preference</label>
+        <div class="rsvp-select-wrap">
+          <select class="rsvp-select" id="mealSelect">
+            <option value="" selected>— Choose your meal —</option>
+            <option value="chicken">Chicken</option>
+            <option value="beef">Beef</option>
+            <option value="fish">Fish</option>
+            <option value="vegetarian">Vegetarian</option>
+          </select>
+          <span class="rsvp-select-arrow">▾</span>
+        </div>
+        <p class="rsvp-helper">For accepted guests only.</p>
+
+        <label class="rsvp-label" for="allergyNotes" style="margin-top: 14px;">Allergy Notes (Optional)</label>
+        <textarea
+          class="rsvp-textarea"
+          id="allergyNotes"
+          placeholder="Example: No nuts, shellfish allergy..."
+          rows="3"
+        ></textarea>
+
+        <label class="rsvp-label" for="songRequest" style="margin-top: 14px;">Song Request (Optional)</label>
+        <input
+          class="rsvp-input"
+          type="text"
+          id="songRequest"
+          maxlength="80"
+          placeholder="Example: Perfect - Ed Sheeran"
+          autocomplete="off"
+        />
+        <p class="rsvp-helper">One song request per guest (max 80 characters).</p>
+      </div>
+
       <!-- Message -->
       <div class="rsvp-field">
         <label class="rsvp-label" for="guestMessage">Message for the Couple</label>
@@ -232,6 +293,10 @@
         <div class="rsvp-ornament-diamond"></div>
         <div class="rsvp-ornament-line"></div>
       </div>
+      <div class="confirm-actions">
+        <a class="confirm-calendar is-hidden" id="confirmCalendarBtn" href="#" target="_blank" rel="noopener noreferrer">Add to Calendar</a>
+        <a class="confirm-love-notes is-hidden" id="confirmLoveNotesBtn" href="love-notes.html">Open Love Notes Wall</a>
+      </div>
     </div>
 
   </div>
@@ -252,6 +317,8 @@
     </div>
     <span class="music-label" id="musicLabel">Play Music</span>
   </div>
+
+  <a class="admin-link" href="admin.html" aria-label="Open admin page">Admin</a>
 
 <script src="js/script.js"></script>
 <script src="js/rsvp.js"></script>

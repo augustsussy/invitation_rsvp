@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Notes Wall - Julie & Arvin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/love-notes.css" />
+</head>
+<body>
+  <div class="letters-layer" id="lettersLayer" aria-hidden="true"></div>
+
+  <main class="wall-page">
+    <header class="wall-header">
+      <div class="wall-header-actions">
+        <a class="wall-back" href="index.html">← Back to Invitation</a>
+        <button id="organizerUnlockBtn" type="button">Organizer Unlock</button>
+        <button id="receptionModeToggle" type="button">Reception Mode: Off</button>
+      </div>
+      <p class="wall-eyebrow">A Living Guestbook</p>
+      <h1 class="wall-title">Love Notes Wall</h1>
+      <p class="wall-mode-hint" id="wallModeHint">Interactive Mode: Guests can post notes here.</p>
+    </header>
+
+    <section class="heart-stage" aria-hidden="true">
+      <div class="photo-orbit one"></div>
+      <div class="photo-orbit two"></div>
+      <div class="photo-orbit three"></div>
+      <div class="heart-center">❤</div>
+    </section>
+
+    <section class="note-form-card">
+      <p class="form-title">Leave a Message for the Couple</p>
+      <div class="form-grid">
+        <div>
+          <label for="noteName">Your Name</label>
+          <input id="noteName" type="text" maxlength="50" placeholder="Type your name" autocomplete="off" />
+        </div>
+        <div>
+          <label for="noteMessage">Your Love Note</label>
+          <textarea id="noteMessage" rows="4" maxlength="220" placeholder="Write your heartfelt message..."></textarea>
+        </div>
+      </div>
+      <p class="wall-meta">Latest 40 notes are kept. This keeps the wall fresh and readable.</p>
+      <p class="wall-error" id="wallError"></p>
+      <button id="wallSubmit" type="button">Post Note ◆</button>
+    </section>
+
+    <section class="moving-notes" id="movingNotes">
+      <div class="notes-track notes-track-a" id="notesTrackA"></div>
+      <div class="notes-track notes-track-b" id="notesTrackB"></div>
+    </section>
+  </main>
+
+  <script src="js/love-notes.js"></script>
+</body>
+</html>

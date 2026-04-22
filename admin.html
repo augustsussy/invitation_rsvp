@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Julie & Arvin Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy-deep:  #5C1A2E;
+      --burgundy-mid:   #7D2741;
+      --burgundy-soft:  #A0435A;
+      --burgundy-muted: #C47A8A;
+      --cream-warm:     #FAF5EE;
+      --cream-mid:      #F2E8D9;
+      --cream-border:   #E0D0BB;
+      --white-pure:     #FFFFFF;
+      --white-off:      #FDF9F4;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--cream-warm);
+      min-height: 100vh;
+      color: var(--burgundy-deep);
+    }
+
+    .admin-back {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 200;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      color: var(--burgundy-soft);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.82;
+    }
+    .admin-back:hover,
+    .admin-back:focus-visible {
+      color: var(--burgundy-deep);
+      opacity: 1;
+    }
+
+    /* ── LOGIN SCREEN ── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--white-off);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      padding: 48px 36px;
+      text-align: center;
+    }
+
+    .login-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      margin-bottom: 10px;
+    }
+
+    .login-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 42px;
+      color: var(--burgundy-deep);
+      margin-bottom: 6px;
+    }
+
+    .login-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      margin-bottom: 36px;
+    }
+
+    .login-ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .login-ornament-line {
+      width: 40px;
+      height: 1px;
+      background: var(--cream-border);
+    }
+    .login-ornament-diamond {
+      width: 5px;
+      height: 5px;
+      background: var(--burgundy-muted);
+      transform: rotate(45deg);
+      opacity: 0.7;
+    }
+
+    .login-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--burgundy-soft);
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--cream-border);
+      border-radius: 2px;
+      background: var(--white-pure);
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      color: var(--burgundy-deep);
+      outline: none;
+      transition: border-color 0.25s;
+      margin-bottom: 20px;
+      letter-spacing: 0.2em;
+      text-align: center;
+    }
+    .login-input:focus {
+      border-color: var(--burgundy-muted);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--burgundy-mid);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--white-pure);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .login-btn:hover {
+      background: var(--burgundy-deep);
+      transform: translateY(-1px);
+    }
+
+    .login-error {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--burgundy-soft);
+      margin-top: 14px;
+      min-height: 16px;
+      text-align: center;
+    }
+
+    /* ── DASHBOARD ── */
+    #dashboard {
+      display: none;
+      min-height: 100vh;
+      padding: 60px 24px 80px;
+    }
+
+    .dash-header {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--cream-border);
+      padding-bottom: 28px;
+    }
+
+    .dash-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      margin-bottom: 6px;
+    }
+
+    .dash-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 48px;
+      color: var(--burgundy-deep);
+      line-height: 1;
+    }
+
+    .dash-logout {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      background: none;
+      border: 1px solid var(--cream-border);
+      border-radius: 2px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+    .dash-logout:hover {
+      border-color: var(--burgundy-muted);
+      color: var(--burgundy-mid);
+    }
+
+    /* ── STATS ── */
+    .dash-stats {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--white-off);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Alex Brush', cursive;
+      font-size: 52px;
+      color: var(--burgundy-deep);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+    }
+
+    /* ── FILTER TABS ── */
+    .dash-filters {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      background: none;
+      border: 1px solid var(--cream-border);
+      border-radius: 2px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--burgundy-mid);
+      border-color: var(--burgundy-mid);
+      color: var(--white-pure);
+    }
+
+    /* ── GUEST TOOLS ── */
+    .guest-tools {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      background: var(--white-off);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      padding: 18px;
+    }
+
+    .guest-tools-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--burgundy-muted);
+      margin-bottom: 12px;
+    }
+
+    .guest-tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .guest-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--burgundy-soft);
+      background: none;
+      border: 1px solid var(--cream-border);
+      border-radius: 2px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .guest-btn:hover {
+      border-color: var(--burgundy-muted);
+      color: var(--burgundy-deep);
+    }
+
+    .guest-btn.danger {
+      color: #8b4758;
+      border-color: #e2c6cd;
+    }
+
+    .guest-tools-meta {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--burgundy-muted);
+      margin-bottom: 8px;
+    }
+
+    .guest-tools-status {
+      min-height: 16px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--burgundy-soft);
+    }
+
+    .guest-tools-status.error {
+      color: #9a4c5e;
+    }
+
+    /* ── RSVP LIST ── */
+    .dash-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rsvp-row {
+      background: var(--white-off);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .rsvp-row-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--burgundy-deep);
+      margin-bottom: 4px;
+    }
+
+    .rsvp-row-meta {
+      font-size: 12px;
+      color: var(--burgundy-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .rsvp-row-message {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--burgundy-soft);
+      line-height: 1.6;
+      border-left: 2px solid var(--cream-border);
+      padding-left: 12px;
+      margin-top: 8px;
+    }
+
+    .rsvp-badge {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .rsvp-badge.accept {
+      background: #EEF5EE;
+      color: #3A6B3A;
+      border: 1px solid #C2D9C2;
+    }
+    .rsvp-badge.decline {
+      background: #F9F0F2;
+      color: var(--burgundy-soft);
+      border: 1px solid var(--cream-border);
+    }
+
+    .rsvp-row-time {
+      font-size: 10px;
+      color: var(--cream-border);
+      letter-spacing: 0.1em;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* ── EMPTY STATE ── */
+    .dash-empty {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--burgundy-muted);
+    }
+
+    .dash-empty-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .dash-empty-sub {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .dash-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .stat-number { font-size: 38px; }
+      .rsvp-row { grid-template-columns: 1fr; }
+      .rsvp-badge { width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOGIN SCREEN ── -->
+  <a class="admin-back" href="index.html" aria-label="Back to invitation">← Back</a>
+
+  <div id="loginScreen">
+    <div class="login-card">
+      <p class="login-eyebrow">Admin Access</p>
+      <h1 class="login-title">Julie & Arvin</h1>
+      <p class="login-subtitle">Wedding Dashboard</p>
+
+      <div class="login-ornament">
+        <div class="login-ornament-line"></div>
+        <div class="login-ornament-diamond"></div>
+        <div class="login-ornament-line"></div>
+      </div>
+
+      <label class="login-label" for="pinInput">Enter Passcode</label>
+      <input
+        class="login-input"
+        type="password"
+        id="pinInput"
+        placeholder="· · · · ·"
+        maxlength="20"
+        onkeydown="if(event.key==='Enter') login()"
+      />
+      <button class="login-btn" onclick="login()">Enter ◆</button>
+      <p class="login-error" id="loginError"></p>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div id="dashboard">
+
+    <div class="dash-header">
+      <div class="dash-title-group">
+        <p class="dash-eyebrow">Wedding Dashboard</p>
+        <h1 class="dash-title">Julie & Arvin</h1>
+      </div>
+      <button class="dash-logout" onclick="logout()">Sign Out</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="dash-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">Total RSVPs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statAccepted">0</div>
+        <div class="stat-label">Accepted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statDeclined">0</div>
+        <div class="stat-label">Declined</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="dash-filters">
+      <button class="filter-btn active" onclick="filterRSVPs('all', this)">All</button>
+      <button class="filter-btn" onclick="filterRSVPs('accept', this)">Accepted</button>
+      <button class="filter-btn" onclick="filterRSVPs('decline', this)">Declined</button>
+    </div>
+
+    <!-- Guest List Tools -->
+    <div class="guest-tools">
+      <p class="guest-tools-title">Guest List Tools</p>
+      <input id="guestCsvInput" type="file" accept=".csv,text/csv" style="display:none" onchange="importGuestCsv(event)" />
+      <div class="guest-tools-row">
+        <button class="guest-btn" type="button" onclick="triggerGuestCsvPicker()">Import CSV</button>
+        <button class="guest-btn" type="button" onclick="exportGuestCsv()">Export CSV</button>
+        <button class="guest-btn danger" type="button" onclick="clearRsvps()">Clear RSVPs</button>
+        <button class="guest-btn danger" type="button" onclick="clearGuestList()">Clear Guest List</button>
+        <button class="guest-btn danger" type="button" onclick="clearUsedCodes()">Reset Used Codes</button>
+      </div>
+      <p class="guest-tools-meta" id="guestToolsMeta">Guests loaded: 0 · Used codes: 0</p>
+      <p class="guest-tools-status" id="guestToolsStatus">CSV format: name,code,plusOnes (code optional, auto-generated when missing)</p>
+    </div>
+
+    <!-- List -->
+    <div class="dash-list" id="rsvpList"></div>
+
+  </div>
+
+  <script>
+    // ── CONFIG — change this password ──
+    const ADMIN_PASSWORD = 'juliearvin2023';
+    const RSVP_STORAGE_KEY = 'wedding_rsvps';
+    const GUEST_LIST_STORAGE_KEY = 'wedding_guest_list';
+    const USED_CODES_STORAGE_KEY = 'wedding_used_invite_codes';
+
+    // ── LOGIN ──
+    function login() {
+      const input = document.getElementById('pinInput').value;
+      const error = document.getElementById('loginError');
+
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadDashboard();
+      } else {
+        error.textContent = '✦ Incorrect passcode. Please try again.';
+        document.getElementById('pinInput').value = '';
+      }
+    }
+
+    // ── LOGOUT ──
+    function logout() {
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('pinInput').value = '';
+      document.getElementById('loginError').textContent = '';
+    }
+
+    // ── LOAD DATA ──
+    let allRSVPs = [];
+
+    function loadDashboard() {
+      allRSVPs = JSON.parse(localStorage.getItem(RSVP_STORAGE_KEY) || '[]');
+
+      const total    = allRSVPs.length;
+      const accepted = allRSVPs.filter(r => r.attendance === 'accept').length;
+      const declined = allRSVPs.filter(r => r.attendance === 'decline').length;
+
+      document.getElementById('statTotal').textContent    = total;
+      document.getElementById('statAccepted').textContent = accepted;
+      document.getElementById('statDeclined').textContent = declined;
+
+      renderGuestToolsSummary();
+      renderList(allRSVPs);
+    }
+
+    // ── GUEST LIST TOOLS ──
+    function triggerGuestCsvPicker() {
+      document.getElementById('guestCsvInput').click();
+    }
+
+    function importGuestCsv(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) {
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const guests = parseGuestCsv(String(reader.result || ''));
+          localStorage.setItem(GUEST_LIST_STORAGE_KEY, JSON.stringify(guests));
+          renderGuestToolsSummary();
+          setGuestToolsStatus(`Imported ${guests.length} guests from CSV.`);
+        } catch (error) {
+          setGuestToolsStatus(error.message || 'Unable to import CSV.', true);
+        }
+
+        document.getElementById('guestCsvInput').value = '';
+      };
+
+      reader.readAsText(file);
+    }
+
+    function exportGuestCsv() {
+      const guests = JSON.parse(localStorage.getItem(GUEST_LIST_STORAGE_KEY) || '[]');
+      if (!Array.isArray(guests) || guests.length === 0) {
+        setGuestToolsStatus('No guest list found to export.', true);
+        return;
+      }
+
+      const header = 'name,code,plusOnes';
+      const rows = guests.map((guest) => `${escapeCsv(guest.name || '')},${escapeCsv(guest.code || '')},${escapeCsv(guest.plusOnes ?? 0)}`);
+      const csv = [header, ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'guest-list.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setGuestToolsStatus(`Exported ${guests.length} guests to CSV.`);
+    }
+
+    function clearGuestList() {
+      if (!window.confirm('Clear imported guest list? This cannot be undone.')) {
+        return;
+      }
+
+      localStorage.removeItem(GUEST_LIST_STORAGE_KEY);
+      renderGuestToolsSummary();
+      setGuestToolsStatus('Imported guest list cleared. Fallback list from RSVP script will be used.');
+    }
+
+    function clearRsvps() {
+      if (!window.confirm('Clear all RSVP entries? This will also reset used invite codes.')) {
+        return;
+      }
+
+      localStorage.removeItem(RSVP_STORAGE_KEY);
+      localStorage.removeItem(USED_CODES_STORAGE_KEY);
+      loadDashboard();
+      setGuestToolsStatus('All RSVP entries cleared and used codes reset.');
+    }
+
+    function clearUsedCodes() {
+      if (!window.confirm('Reset all used invite codes? Guests will be able to submit again.')) {
+        return;
+      }
+
+      localStorage.removeItem(USED_CODES_STORAGE_KEY);
+      renderGuestToolsSummary();
+      setGuestToolsStatus('Used invite codes reset.');
+    }
+
+    function renderGuestToolsSummary() {
+      const guests = JSON.parse(localStorage.getItem(GUEST_LIST_STORAGE_KEY) || '[]');
+      const usedCodes = JSON.parse(localStorage.getItem(USED_CODES_STORAGE_KEY) || '{}');
+      const guestCount = Array.isArray(guests) ? guests.length : 0;
+      const usedCount = usedCodes && typeof usedCodes === 'object' ? Object.keys(usedCodes).length : 0;
+
+      document.getElementById('guestToolsMeta').textContent = `Guests loaded: ${guestCount} · Used codes: ${usedCount}`;
+    }
+
+    function setGuestToolsStatus(message, isError = false) {
+      const status = document.getElementById('guestToolsStatus');
+      status.textContent = message;
+      status.classList.toggle('error', isError);
+    }
+
+    function parseGuestCsv(csvText) {
+      const rows = parseCsvRows(csvText).filter((row) => row.some((cell) => cell.trim() !== ''));
+      if (rows.length === 0) {
+        throw new Error('CSV is empty.');
+      }
+
+      const header = rows[0].map((cell) => cell.trim().toLowerCase());
+      const hasHeader = header.includes('name') || header.includes('guest') || header.includes('guest name');
+
+      let startIndex = 0;
+      let nameIndex = 0;
+      let codeIndex = 1;
+      let plusOnesIndex = -1;
+
+      if (hasHeader) {
+        startIndex = 1;
+        nameIndex = header.findIndex((cell) => cell === 'name' || cell === 'guest' || cell === 'guest name');
+        if (nameIndex < 0) {
+          nameIndex = 0;
+        }
+
+        codeIndex = header.findIndex((cell) => cell === 'code' || cell === 'invite code' || cell === 'invite_code');
+        plusOnesIndex = header.findIndex((cell) => cell === 'plusones' || cell === 'plus ones' || cell === 'plus_one' || cell === 'plus one');
+      }
+
+      const guests = [];
+
+      for (let i = startIndex; i < rows.length; i++) {
+        const row = rows[i];
+        const name = (row[nameIndex] || row[0] || '').trim();
+        const codeRaw = codeIndex >= 0 ? (row[codeIndex] || '') : (row[1] || '');
+        const code = normalizeCode(codeRaw);
+        const plusOnesRaw = plusOnesIndex >= 0 ? (row[plusOnesIndex] || '') : (row[2] || '0');
+        const plusOnes = normalizePlusOnes(plusOnesRaw);
+
+        if (!name) {
+          continue;
+        }
+
+        guests.push({ name, code, plusOnes });
+      }
+
+      if (guests.length === 0) {
+        throw new Error('No valid guests found. Add at least one name in CSV.');
+      }
+
+      return applyUniqueCodes(guests);
+    }
+
+    function parseCsvRows(text) {
+      const rows = [];
+      let row = [];
+      let field = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            field += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+          continue;
+        }
+
+        if (char === ',' && !inQuotes) {
+          row.push(field);
+          field = '';
+          continue;
+        }
+
+        if ((char === '\n' || char === '\r') && !inQuotes) {
+          if (char === '\r' && next === '\n') {
+            i++;
+          }
+
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = '';
+          continue;
+        }
+
+        field += char;
+      }
+
+      if (field.length > 0 || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    function normalizeCode(value) {
+      return String(value || '').trim().toUpperCase().replace(/\s+/g, '');
+    }
+
+    function normalizePlusOnes(value) {
+      const parsed = Number.parseInt(String(value ?? 0), 10);
+      if (!Number.isFinite(parsed) || parsed < 0) {
+        return 0;
+      }
+      return parsed;
+    }
+
+    function applyUniqueCodes(guests) {
+      const used = new Set();
+
+      return guests.map((guest) => {
+        let code = normalizeCode(guest.code);
+        if (!code || used.has(code)) {
+          code = generateInviteCode(guest.name, used);
+        }
+
+        used.add(code);
+        return { name: guest.name, code, plusOnes: normalizePlusOnes(guest.plusOnes) };
+      });
+    }
+
+    function generateInviteCode(name, usedSet) {
+      const parts = String(name || '')
+        .toUpperCase()
+        .replace(/[^A-Z0-9 ]/g, ' ')
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+
+      let base = parts.map((part) => part[0]).join('');
+      if (base.length < 3) {
+        base = String(name || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+      }
+      if (!base) {
+        base = 'GUEST';
+      }
+
+      base = base.slice(0, 6);
+      let counter = 1;
+      let candidate = '';
+
+      do {
+        candidate = `${base}${String(counter).padStart(2, '0')}`;
+        counter++;
+      } while (usedSet.has(candidate));
+
+      return candidate;
+    }
+
+    function escapeCsv(value) {
+      const raw = String(value || '');
+      const escaped = raw.replace(/"/g, '""');
+      return `"${escaped}"`;
+    }
+
+    // ── FILTER ──
+    function filterRSVPs(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filtered = type === 'all'
+        ? allRSVPs
+        : allRSVPs.filter(r => r.attendance === type);
+
+      renderList(filtered);
+    }
+
+    // ── RENDER LIST ──
+    function renderList(rsvps) {
+      const list = document.getElementById('rsvpList');
+
+      if (rsvps.length === 0) {
+        list.innerHTML = `
+          <div class="dash-empty">
+            <div class="dash-empty-title">No responses yet</div>
+            <div class="dash-empty-sub">RSVPs will appear here once guests submit</div>
+          </div>`;
+        return;
+      }
+
+      // Show newest first
+      const sorted = [...rsvps].reverse();
+
+      list.innerHTML = sorted.map(r => {
+        const date = new Date(r.submittedAt);
+        const timeStr = date.toLocaleDateString('en-PH', {
+          month: 'short', day: 'numeric', year: 'numeric',
+          hour: '2-digit', minute: '2-digit'
+        });
+
+        const seatInfo = r.seat
+          ? `<span>·</span> ${r.seat.replace('T', 'Table ').replace('-S', ' — Seat ')}`
+          : '';
+
+        const codeInfo = r.inviteCode
+          ? `<span>·</span> Code: ${r.inviteCode}`
+          : '';
+
+        const mealInfo = r.mealPreference
+          ? `<span>·</span> Meal: ${r.mealPreference.charAt(0).toUpperCase() + r.mealPreference.slice(1)}`
+          : '';
+
+        const attendeeInfo = r.attendance === 'accept'
+          ? `<span>·</span> Guests: ${1 + Math.max(0, Number(r.plusOneCount || 0))}`
+          : '';
+
+        const messageBlock = r.message
+          ? `<div class="rsvp-row-message">"${r.message}"</div>`
+          : '';
+
+        const allergyBlock = r.allergyNotes
+          ? `<div class="rsvp-row-message">Allergy: ${r.allergyNotes}</div>`
+          : '';
+
+        const songBlock = r.songRequest
+          ? `<div class="rsvp-row-message">Song: ${r.songRequest}</div>`
+          : '';
+
+        return `
+          <div class="rsvp-row">
+            <div class="rsvp-row-left">
+              <div class="rsvp-row-name">${r.name}</div>
+              <div class="rsvp-row-meta">${seatInfo} ${codeInfo} ${mealInfo} ${attendeeInfo}</div>
+              ${messageBlock}
+              ${allergyBlock}
+              ${songBlock}
+            </div>
+            <div>
+              <span class="rsvp-badge ${r.attendance}">
+                ${r.attendance === 'accept' ? 'Accepted' : 'Declined'}
+              </span>
+              <div class="rsvp-row-time">${timeStr}</div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+  </script>
+
+</body>
+</html>

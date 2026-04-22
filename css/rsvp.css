@@ -98,6 +98,15 @@
   margin-bottom: 10px;
 }
 
+.rsvp-helper {
+  margin-top: 8px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--burgundy-muted);
+  text-transform: uppercase;
+}
+
 .rsvp-input {
   width: 100%;
   padding: 14px 16px;
@@ -198,13 +207,13 @@
   pointer-events: none;
 }
 
-/* Hide seat field when declining */
-#seatField {
+/* Hide accept-only fields when declining */
+.accept-only-field {
   transition: opacity 0.3s, max-height 0.4s;
-  max-height: 200px;
+  max-height: 400px;
   overflow: hidden;
 }
-#seatField.hidden {
+.accept-only-field.hidden {
   opacity: 0;
   max-height: 0;
   margin-bottom: 0;
@@ -326,6 +335,41 @@
   color: var(--burgundy-soft);
 }
 
+.confirm-actions {
+  width: 100%;
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.confirm-love-notes,
+.confirm-calendar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid var(--burgundy-mid);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--burgundy-mid);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.confirm-love-notes:hover,
+.confirm-calendar:hover {
+  background: var(--burgundy-mid);
+  color: var(--white-pure);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
 /* ── BACK TO TOP ── */
 .rsvp-back-top {
   position: absolute;
@@ -349,6 +393,7 @@
   color: var(--burgundy-mid);
 }
 
+/* ── LOVE NOTES WALL ── */
 /* ── RESPONSIVE ── */
 @media (max-width: 480px) {
   .rsvp-card {
