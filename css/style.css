@@ -14,9 +14,19 @@
 
 html, body {
   height: 100%;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   background: var(--cream-warm);
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* ── HERO ── */
@@ -51,10 +61,16 @@ html, body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(10,4,7,0.55) 0%, rgba(10,4,7,0.72) 100%);
+  /* Cleaner black overlay for stronger readability with less smoky layering */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.68) 0%,
+    rgba(0, 0, 0, 0.48) 38%,
+    rgba(0, 0, 0, 0.58) 70%,
+    rgba(0, 0, 0, 0.76) 100%
+  );
   z-index: 1;
 }
-
 .hero-grain {
   position: absolute;
   inset: 0;
@@ -96,10 +112,10 @@ html, body {
 }
 
 .hero-eyebrow {
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: clamp(12px, 2.7vw, 15px);
   font-weight: 500;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--burgundy-muted);
   margin-bottom: 20px;
@@ -132,8 +148,8 @@ html, body {
 }
 
 .hero-bride {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 14vw, 88px);
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(62px, 16vw, 102px);
   font-weight: 400;
   font-style: italic;
   color: var(--white-pure);
@@ -144,8 +160,8 @@ html, body {
 }
 
 .hero-ampersand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(28px, 7vw, 44px);
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(34px, 8vw, 52px);
   font-style: italic;
   font-weight: 300;
   color: var(--burgundy-muted);
@@ -156,8 +172,8 @@ html, body {
 }
 
 .hero-groom {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(52px, 14vw, 88px);
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(62px, 16vw, 102px);
   font-weight: 400;
   font-style: italic;
   color: var(--white-pure);
@@ -189,10 +205,10 @@ html, body {
 }
 
 .hero-surnames {
-  font-family: 'Jost', sans-serif;
-  font-size: 11px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: clamp(13px, 3vw, 16px);
   font-weight: 400;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(250, 245, 238, 0.65);
   margin-bottom: 14px;
@@ -201,8 +217,8 @@ html, body {
 }
 
 .hero-date {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(15px, 4vw, 18px);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: clamp(18px, 4.8vw, 24px);
   font-style: italic;
   font-weight: 300;
   color: rgba(250, 245, 238, 0.8);
@@ -212,10 +228,10 @@ html, body {
 }
 
 .hero-venue {
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: clamp(12px, 2.8vw, 15px);
   font-weight: 400;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(196, 122, 138, 0.8);
   margin-bottom: 36px;
@@ -235,8 +251,8 @@ html, body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--white-pure);
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: clamp(11px, 2.7vw, 14px);
   font-weight: 500;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -295,7 +311,7 @@ html, body {
   fill: var(--white-pure);
 }
 .music-label {
-  font-family: 'Jost', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -319,7 +335,7 @@ html, body {
   padding: 80px 32px;
   text-align: center;
   color: var(--burgundy-soft);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Alex Brush', cursive;
   font-size: 22px;
   font-style: italic;
   letter-spacing: 0.05em;

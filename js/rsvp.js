@@ -112,5 +112,9 @@ function showConfirmation(name, attendance) {
   confirm.classList.add('visible');
 
   // Smooth scroll to confirmation
-  document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+  if (typeof window.smoothScrollToTarget === 'function') {
+    window.smoothScrollToTarget(document.getElementById('rsvp'), 20, 900);
+  } else {
+    document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+  }
 }
