@@ -1,0 +1,339 @@
+/* ── RSVP SECTION ── */
+.rsvp {
+  background: var(--cream-warm);
+  padding: 80px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ── HEADER ── */
+.rsvp-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.rsvp-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--burgundy-muted);
+  margin-bottom: 10px;
+}
+
+.rsvp-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 12vw, 72px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--burgundy-deep);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.rsvp-ornament {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+}
+.rsvp-ornament-line {
+  width: 48px;
+  height: 1px;
+  background: var(--cream-border);
+}
+.rsvp-ornament-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--burgundy-muted);
+  transform: rotate(45deg);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ── CARD ── */
+.rsvp-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--white-off);
+  border: 1px solid var(--cream-border);
+  border-radius: 4px;
+  padding: 40px 32px;
+  position: relative;
+  min-height: 300px;
+}
+
+/* ── FIELDS ── */
+.rsvp-field {
+  margin-bottom: 28px;
+}
+
+.rsvp-label {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--burgundy-soft);
+  margin-bottom: 10px;
+}
+
+.rsvp-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--cream-border);
+  border-radius: 2px;
+  background: var(--white-pure);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--burgundy-deep);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.rsvp-input::placeholder {
+  color: var(--cream-border);
+  font-style: italic;
+}
+.rsvp-input:focus {
+  border-color: var(--burgundy-muted);
+}
+
+/* ── ATTENDANCE BUTTONS ── */
+.rsvp-attendance {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rsvp-attend-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid var(--cream-border);
+  border-radius: 2px;
+  background: var(--white-pure);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--burgundy-soft);
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.rsvp-attend-btn:hover {
+  border-color: var(--burgundy-muted);
+  color: var(--burgundy-mid);
+}
+.rsvp-attend-btn.selected {
+  background: var(--burgundy-mid);
+  border-color: var(--burgundy-mid);
+  color: var(--white-pure);
+}
+.attend-diamond {
+  font-size: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.rsvp-attend-btn.selected .attend-diamond {
+  opacity: 1;
+}
+
+/* ── SEAT SELECT ── */
+.rsvp-select-wrap {
+  position: relative;
+}
+
+.rsvp-select {
+  width: 100%;
+  padding: 14px 40px 14px 16px;
+  border: 1px solid var(--cream-border);
+  border-radius: 2px;
+  background: var(--white-pure);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--burgundy-deep);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.rsvp-select:focus {
+  border-color: var(--burgundy-muted);
+}
+
+.rsvp-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--burgundy-muted);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* Hide seat field when declining */
+#seatField {
+  transition: opacity 0.3s, max-height 0.4s;
+  max-height: 200px;
+  overflow: hidden;
+}
+#seatField.hidden {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  pointer-events: none;
+}
+
+/* ── TEXTAREA ── */
+.rsvp-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--cream-border);
+  border-radius: 2px;
+  background: var(--white-pure);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--burgundy-deep);
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.25s;
+}
+.rsvp-textarea::placeholder {
+  color: var(--cream-border);
+  font-style: italic;
+}
+.rsvp-textarea:focus {
+  border-color: var(--burgundy-muted);
+}
+
+/* ── ERROR ── */
+.rsvp-error {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--burgundy-soft);
+  margin-bottom: 12px;
+  min-height: 16px;
+  text-align: center;
+}
+
+/* ── SUBMIT ── */
+.rsvp-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--burgundy-mid);
+  border: none;
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-pure);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.rsvp-submit:hover {
+  background: var(--burgundy-deep);
+  transform: translateY(-1px);
+}
+.rsvp-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── CONFIRMATION STATE ── */
+.rsvp-confirm {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+.rsvp-confirm.visible {
+  display: flex;
+}
+
+.confirm-heart {
+  width: 56px;
+  height: 56px;
+  color: var(--burgundy-mid);
+  margin-bottom: 24px;
+}
+.confirm-heart svg {
+  width: 100%;
+  height: 100%;
+}
+
+.confirm-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--burgundy-deep);
+  margin-bottom: 16px;
+}
+
+.confirm-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--burgundy-soft);
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+.confirm-message strong {
+  color: var(--burgundy-deep);
+  font-weight: 600;
+}
+
+/* Decline confirmation variant */
+.rsvp-confirm.declined .confirm-title {
+  color: var(--burgundy-soft);
+}
+
+/* ── BACK TO TOP ── */
+.rsvp-back-top {
+  position: absolute;
+  bottom: 32px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--cream-border);
+  background: var(--white-off);
+  color: var(--burgundy-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.rsvp-back-top:hover {
+  border-color: var(--burgundy-muted);
+  color: var(--burgundy-mid);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .rsvp-card {
+    padding: 32px 20px;
+  }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julie & Arvin — Wedding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rsvp.css">
+
+</head>
+<body>
+
+  <!-- ── HERO SECTION ── -->
+  <section class="hero" id="hero">
+    <!-- <img class="hero-photo" src="assets/couple.jpg" alt="Julie and Arvin"> -->
+<img class="hero-photo" src="images/hero_pic.jpg" alt="Julie and Arvin">
+    <!-- Overlays -->
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+
+    <!-- Corner decorations -->
+    <div class="hero-corner tl">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 56 L4 4 L56 4" stroke="#C47A8A" stroke-width="1" fill="none"/>
+        <path d="M4 20 Q4 4 20 4" stroke="#C47A8A" stroke-width="0.75" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-corner tr">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 56 L4 4 L56 4" stroke="#C47A8A" stroke-width="1" fill="none"/>
+        <path d="M4 20 Q4 4 20 4" stroke="#C47A8A" stroke-width="0.75" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-corner bl">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 56 L4 4 L56 4" stroke="#C47A8A" stroke-width="1" fill="none"/>
+        <path d="M4 20 Q4 4 20 4" stroke="#C47A8A" stroke-width="0.75" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-corner br">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 56 L4 4 L56 4" stroke="#C47A8A" stroke-width="1" fill="none"/>
+        <path d="M4 20 Q4 4 20 4" stroke="#C47A8A" stroke-width="0.75" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Main content -->
+    <div class="hero-content">
+      <p class="hero-eyebrow">The Wedding of</p>
+
+      <div class="hero-ornament">
+        <div class="hero-ornament-line"></div>
+        <div class="hero-ornament-diamond"></div>
+        <div class="hero-ornament-line right"></div>
+      </div>
+
+      <h1 class="hero-bride">Julie</h1>
+      <p class="hero-ampersand">&</p>
+      <h1 class="hero-groom">Arvin</h1>
+
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <div class="hero-divider-diamond"></div>
+        <div class="hero-divider-line"></div>
+      </div>
+
+      <p class="hero-surnames">Dizon · Llamera</p>
+      <p class="hero-date">Sunday, 29th of December, 2023</p>
+      <p class="hero-venue">San Agustin Church · Cavite</p>
+
+      <a class="hero-cta" href="#rsvp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        View Invitation
+      </a>
+    </div>
+  </section>
+
+<!-- ── RSVP SECTION ── -->
+<!-- Add this block right after your hero section in index.html -->
+<!-- Also add in your <head>: <link rel="stylesheet" href="css/rsvp.css"> -->
+<!-- Also add before </body>: <script src="js/rsvp.js"></script> -->
+
+<section class="rsvp" id="rsvp">
+
+  <!-- Section header -->
+  <div class="rsvp-header">
+    <p class="rsvp-eyebrow">Kindly Reply</p>
+    <h2 class="rsvp-title">RSVP</h2>
+    <div class="rsvp-ornament">
+      <div class="rsvp-ornament-line"></div>
+      <div class="rsvp-ornament-diamond"></div>
+      <div class="rsvp-ornament-line"></div>
+    </div>
+  </div>
+
+  <!-- Form card -->
+  <div class="rsvp-card">
+
+    <!-- ── FORM STATE ── -->
+    <div class="rsvp-form-wrap" id="rsvpFormWrap">
+
+      <!-- Full Name -->
+      <div class="rsvp-field">
+        <label class="rsvp-label" for="guestName">Full Name</label>
+        <input
+          class="rsvp-input"
+          type="text"
+          id="guestName"
+          placeholder="Your full name..."
+          autocomplete="off"
+        />
+      </div>
+
+      <!-- Attendance -->
+      <div class="rsvp-field">
+        <label class="rsvp-label">Attendance</label>
+        <div class="rsvp-attendance">
+          <button class="rsvp-attend-btn" id="btnAccept" onclick="selectAttendance('accept')">
+            <span class="attend-diamond">◆</span> Joyfully Accepts
+          </button>
+          <button class="rsvp-attend-btn" id="btnDecline" onclick="selectAttendance('decline')">
+            Regretfully Declines
+          </button>
+        </div>
+      </div>
+
+      <!-- Seat Selector -->
+      <div class="rsvp-field" id="seatField">
+        <label class="rsvp-label">Select Your Seat</label>
+        <div class="rsvp-select-wrap">
+          <select class="rsvp-select" id="seatSelect">
+            <option value="" disabled selected>— Choose your table &amp; seat —</option>
+            <!-- Table 1 -->
+            <optgroup label="Table 1 — Roses">
+              <option value="T1-S1">Table 1 — Roses — Seat 1</option>
+              <option value="T1-S2">Table 1 — Roses — Seat 2</option>
+              <option value="T1-S3">Table 1 — Roses — Seat 3</option>
+              <option value="T1-S4">Table 1 — Roses — Seat 4</option>
+              <option value="T1-S5">Table 1 — Roses — Seat 5</option>
+              <option value="T1-S6">Table 1 — Roses — Seat 6</option>
+              <option value="T1-S7">Table 1 — Roses — Seat 7</option>
+              <option value="T1-S8">Table 1 — Roses — Seat 8</option>
+            </optgroup>
+            <!-- Table 2 -->
+            <optgroup label="Table 2 — Peonies">
+              <option value="T2-S1">Table 2 — Peonies — Seat 1</option>
+              <option value="T2-S2">Table 2 — Peonies — Seat 2</option>
+              <option value="T2-S3">Table 2 — Peonies — Seat 3</option>
+              <option value="T2-S4">Table 2 — Peonies — Seat 4</option>
+              <option value="T2-S5">Table 2 — Peonies — Seat 5</option>
+              <option value="T2-S6">Table 2 — Peonies — Seat 6</option>
+              <option value="T2-S7">Table 2 — Peonies — Seat 7</option>
+              <option value="T2-S8">Table 2 — Peonies — Seat 8</option>
+            </optgroup>
+            <!-- Table 3 -->
+            <optgroup label="Table 3 — Jasmine">
+              <option value="T3-S1">Table 3 — Jasmine — Seat 1</option>
+              <option value="T3-S2">Table 3 — Jasmine — Seat 2</option>
+              <option value="T3-S3">Table 3 — Jasmine — Seat 3</option>
+              <option value="T3-S4">Table 3 — Jasmine — Seat 4</option>
+              <option value="T3-S5">Table 3 — Jasmine — Seat 5</option>
+              <option value="T3-S6">Table 3 — Jasmine — Seat 6</option>
+              <option value="T3-S7">Table 3 — Jasmine — Seat 7</option>
+              <option value="T3-S8">Table 3 — Jasmine — Seat 8</option>
+            </optgroup>
+            <!-- Table 4 -->
+            <optgroup label="Table 4 — Orchids">
+              <option value="T4-S1">Table 4 — Orchids — Seat 1</option>
+              <option value="T4-S2">Table 4 — Orchids — Seat 2</option>
+              <option value="T4-S3">Table 4 — Orchids — Seat 3</option>
+              <option value="T4-S4">Table 4 — Orchids — Seat 4</option>
+              <option value="T4-S5">Table 4 — Orchids — Seat 5</option>
+              <option value="T4-S6">Table 4 — Orchids — Seat 6</option>
+              <option value="T4-S7">Table 4 — Orchids — Seat 7</option>
+              <option value="T4-S8">Table 4 — Orchids — Seat 8</option>
+            </optgroup>
+            <!-- Table 5 -->
+            <optgroup label="Table 5 — Lily">
+              <option value="T5-S1">Table 5 — Lily — Seat 1</option>
+              <option value="T5-S2">Table 5 — Lily — Seat 2</option>
+              <option value="T5-S3">Table 5 — Lily — Seat 3</option>
+              <option value="T5-S4">Table 5 — Lily — Seat 4</option>
+              <option value="T5-S5">Table 5 — Lily — Seat 5</option>
+              <option value="T5-S6">Table 5 — Lily — Seat 6</option>
+              <option value="T5-S7">Table 5 — Lily — Seat 7</option>
+              <option value="T5-S8">Table 5 — Lily — Seat 8</option>
+            </optgroup>
+          </select>
+          <span class="rsvp-select-arrow">▾</span>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="rsvp-field">
+        <label class="rsvp-label" for="guestMessage">Message for the Couple</label>
+        <textarea
+          class="rsvp-textarea"
+          id="guestMessage"
+          placeholder="Write your warm wishes here..."
+          rows="4"
+        ></textarea>
+      </div>
+
+      <!-- Error message -->
+      <p class="rsvp-error" id="rsvpError"></p>
+
+      <!-- Submit -->
+      <button class="rsvp-submit" id="rsvpSubmit" onclick="submitRSVP()">
+        <span id="rsvpSubmitText">Send with Love ◆</span>
+      </button>
+
+    </div>
+
+    <!-- ── CONFIRMATION STATE ── -->
+    <div class="rsvp-confirm" id="rsvpConfirm">
+      <div class="confirm-heart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h3 class="confirm-title" id="confirmTitle">We'll see you there!</h3>
+      <p class="confirm-message" id="confirmMessage">
+        Thank you, <strong id="confirmName"></strong>.<br>
+        Your RSVP has been received.<br>
+        We can't wait to celebrate with you.
+      </p>
+      <div class="confirm-ornament">
+        <div class="rsvp-ornament-line"></div>
+        <div class="rsvp-ornament-diamond"></div>
+        <div class="rsvp-ornament-line"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Back to top -->
+  <button class="rsvp-back-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+</section>
+
+
+  <!-- ── MUSIC BUTTON ── -->
+  <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+    <div class="music-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+          fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="music-label" id="musicLabel">Play Music</span>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/rsvp.js"></script>
+</body>
+</html>
